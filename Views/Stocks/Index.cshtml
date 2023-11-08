@@ -1,0 +1,68 @@
+﻿@model IEnumerable<StockManagement.Models.Stock>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1> Stock Details</h1>
+
+<div class="container mt-5">
+   
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h5>Total Revenue: <span id="totalRevenue">@ViewBag.Revenue</span></h5>
+        </div>
+        <div class="col-md-6">
+            <h5>Total Number of Products: <span id="totalProducts">@ViewBag.ProductCount</span></h5>
+        </div>
+        <div class="col-md-6">
+            <h5>Total Number of Sales: <span id="totalSales">@ViewBag.sale</span></h5>
+        </div>
+        <div class="col-md-6">
+            <h5>Out of Stocks: <span id="totalout">@ViewBag.outofstack</span></h5>
+        </div>
+    </div>
+
+    <!-- Product grid using Bootstrap table -->
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Product.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalQuantity)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalQuantity)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.StockId">Edit</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
